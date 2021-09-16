@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Initial\InicioController;
+use App\Http\Controllers\TarefaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [InicioController::class, "index"]);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+  Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+  })->name('dashboard');
+
+  Route::resource("tarefa", TarefaController::class);
+});
