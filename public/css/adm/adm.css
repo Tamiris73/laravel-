@@ -33,6 +33,7 @@ header section h1 {
 }
 header section picture {
   display: flex;
+  align-content: center;
   flex-direction: row;
 }
 header section picture img {
