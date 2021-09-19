@@ -70,10 +70,10 @@ class TarefaController extends Controller
    * @param  \App\Models\Tarefa  $tarefas
    * @return \Illuminate\Http\Response
    */
-  public function edit(Tarefa $tarefas)
+  public function edit(Tarefa $tarefa)
   {
     $users = User::all();
-    return view("adm/tarefa/edit", compact('users', 'tarefas'));
+    return view("adm/tarefa/edit", compact('users', 'tarefa'));
   }
 
   /**
@@ -83,20 +83,20 @@ class TarefaController extends Controller
    * @param  \App\Models\Tarefa  $tarefas
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Tarefa $tarefas)
+  public function update(Request $request, Tarefa $tarefa)
   {
     $validated = $request->validate([
-        'user_id' => 'required|integer',
-        'descricao' => 'required|max:255',
-        'data' => 'required|max:255',
+      'user_id' => 'required|integer',
+      'descricao' => 'required|max:255',
+      'data' => 'required|max:255',
     ]);
     if ($validated) {
-        $tarefas = new Tarefa();
-        $tarefas->user_id = $request->get('user_id');
-        $tarefas->descricao = $request->get('descricao');
-        $tarefas->data = $request->get('data');
-        $tarefas->save();
-        return redirect("tarefa");
+      $tarefas = new Tarefa();
+      $tarefas->user_id = $request->get('user_id');
+      $tarefas->descricao = $request->get('descricao');
+      $tarefas->data = $request->get('data');
+      $tarefas->save();
+      return redirect("tarefa");
     }
   }
 
