@@ -8,7 +8,7 @@
   @endforeach
 </ul>
 @endif
-<form method="POST" action="{{url('tarefa',$tarefas->id)}}">
+<form method="POST" action="{{url('tarefa',$tarefa->id)}}">
   @csrf
   @method('PUT')
   <div  class="row">
@@ -22,11 +22,11 @@
     </div>
     <div class="row">
         <label class="col-2" for="des">Descrição</label>
-        <input type="text" name="descricao" id="des" class="col-3" value="{{  $tarefas->descricao }}" />
+        <input type="text" name="descricao" id="des" class="col-3" value="{{  $tarefa->descricao }}" />
     </div>
     <div class="row">
         <label class="col-2" for="data">Data</label>
-        <input type="test" name="data" id="data" class="col-5" value="{{ $tarefas->data }}" />
+        <input type="test" name="data" id="data" class="col-5" value="{{ $tarefa->data }}" />
     </div>
   <button type="submit" class="button">Salvar</button>
 </form>
