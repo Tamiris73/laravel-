@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-
 use App\Http\Controllers\Controller;
 use App\Models\Tarefa;
 use App\Traits\ApiResponse;
@@ -27,44 +26,34 @@ class TarefaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+      $validated = $request->validate([
+        'user_id' => 'required|integer|exists:App\Models\User,id',
+        'descricao' => 'required|max:255',
+        'data' => 'required|max:255',
+      ]);
+      if ($validated) {
+        $tarefa = new Tarefa();
+        $tarefa->user_id = $request->get('user_id');
+        $tarefa->descricao = $request->get('descricao');
+        $tarefa->data = $request->get('data');
+        $tarefa->save();
+        return $this->success($tarefa);
+      }
     }
-
+  
     /**
-     * Display the specified resource.
+     * Display the specified resource.....
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+      //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
+  
     /**
      * Update the specified resource in storage.
      *
@@ -74,9 +63,9 @@ class TarefaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      //
     }
-
+  
     /**
      * Remove the specified resource from storage.
      *
@@ -85,6 +74,6 @@ class TarefaController extends Controller
      */
     public function destroy($id)
     {
-        //
+      //
     }
-}
+  }
