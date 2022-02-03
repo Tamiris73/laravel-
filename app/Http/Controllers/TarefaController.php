@@ -106,9 +106,9 @@ class TarefaController extends Controller
    * @param  \App\Models\Tarefa  $tarefas
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Tarefa $tarefas)
+  public function destroy(Tarefa $tarefa)
   {
-    $tarefas->delete();
+    $tarefa->delete();
     return redirect("tarefa");
   }
 }
